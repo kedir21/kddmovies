@@ -1,0 +1,6 @@
+{
+  "name": "KD Movies — Curated Cinema & Series",
+  "description": "A luxury digital film collection and editorial cinema discovery experience.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
