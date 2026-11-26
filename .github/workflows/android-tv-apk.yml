@@ -20,19 +20,19 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '17'
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
         with:
           gradle-version: '8.10.2'
 
@@ -40,7 +40,9 @@ jobs:
         working-directory: android-tv
         env:
           KD_APP_URL: ${{ github.event.inputs.app_url || vars.KD_APP_URL || 'https://kddmovies.vercel.app' }}
-        run: gradle assembleRelease --no-daemon
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null 2>&1 || true
+          gradle assembleRelease --no-daemon --stacktrace
 
       - name: Upload Release APK Artifact
         uses: actions/upload-artifact@v4

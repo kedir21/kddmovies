@@ -143,13 +143,7 @@ class MainActivity : Activity() {
             }
 
             override fun onHideCustomView() {
-                val view = customView ?: return
-                rootContainer.removeView(view)
-                customView = null
-                customViewCallback?.onCustomViewHidden()
-                customViewCallback = null
-                webView.visibility = View.VISIBLE
-                enterImmersiveMode()
+                hideCustomFullscreenView()
             }
         }
 
@@ -226,6 +220,16 @@ class MainActivity : Activity() {
             .show()
     }
 
+    private fun hideCustomFullscreenView() {
+        val view = customView ?: return
+        rootContainer.removeView(view)
+        customView = null
+        customViewCallback?.onCustomViewHidden()
+        customViewCallback = null
+        webView.visibility = View.VISIBLE
+        enterImmersiveMode()
+    }
+
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_MENU || keyCode == KeyEvent.KEYCODE_INFO) {
             showServerUrlDialog(isConnectionError = false)
@@ -234,7 +238,7 @@ class MainActivity : Activity() {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (customView != null) {
-                webView.webChromeClient?.onHideCustomView()
+                hideCustomFullscreenView()
                 return true
             }
             // Dispatch Escape first so open player / film dossier / search modals close cleanly
