@@ -20,6 +20,11 @@
     background-color: #090A0B;
     color: #F5F2EB;
   }
+
+  :focus-visible {
+    outline: 2px solid #D4AF6A;
+    outline-offset: 3px;
+  }
 }
 
 /* Custom subtle cinema scrollbar */

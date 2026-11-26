@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.KDMoviesTV" parent="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen">
+        <item name="android:windowBackground">#090A0B</item>
+        <item name="android:colorBackground">#090A0B</item>
+    </style>
+</resources>

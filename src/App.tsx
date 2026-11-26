@@ -25,6 +25,7 @@ import {
 import { FilmDetailView } from './components/FilmDetailView';
 import { ScreeningPlayer } from './components/ScreeningPlayer';
 import { SearchModal } from './components/SearchModal';
+import { useTVDpadNavigation } from './hooks/useTVDpadNavigation';
 
 const WATCHLIST_ITEMS_STORAGE_KEY = 'kd_movies_watchlist_v1';
 const DEFAULT_WATCHLIST_ITEMS = CATALOG.slice(0, 2);
@@ -44,6 +45,7 @@ function mapSortOptionToTmdb(
 }
 
 export default function App() {
+  useTVDpadNavigation();
   const [activeTab, setActiveTab] = useState<NavTab>('discover');
   const [selectedGenre, setSelectedGenre] = useState<GenreFilter>('All');
   const [isFiltering, setIsFiltering] = useState(false);
